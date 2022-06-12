@@ -1,5 +1,5 @@
 // Assignment code here
-var lengthOfpassword = Math.floor(Math.random()*120) + 8;
+var rangeOfpassword = Math.floor(Math.random()*120) + 8;
 var lowerCase = true;
 var uperCase = true;
 var numerIc = true;
@@ -19,32 +19,47 @@ function selectRandom(stringSelect){ //selects ramdom character within a string
  return stringSelect[characterSelect]
 }
 
+
+
 function generatePassword (){
   var possibleCharacters = '';
+  rangeOfpassword = passLength();
 
 // If true
-if (lengthOfpassword && lowerCase) {
+if (rangeOfpassword && confirm("Would you like lowercase letters?")) { //popup
   possibleCharacters += random.low
 } 
 
-if (lengthOfpassword && uperCase){
+if (rangeOfpassword && confirm("Would you like uppercase letters?")){ //popup
   possibleCharacters += random.up
 }
 
-if(lengthOfpassword && numerIc){
+if(rangeOfpassword && confirm("Would you like numbers?")){//popup
   possibleCharacters += random.number
 }
 
-if (lengthOfpassword && specialCharacters){
+if (rangeOfpassword && confirm("Would you like special characters?")){ //popup
   possibleCharacters += random.special
 }
-  console.log(lengthOfpassword);
+  console.log(rangeOfpassword);
 
  var currentPassword = '';
- while(currentPassword.length < lengthOfpassword){ //loop
+ while(currentPassword.length < rangeOfpassword){ //loop
   currentPassword += selectRandom(possibleCharacters)
 }
   return currentPassword
+}
+
+function passLength (){ //helper function
+  let User = prompt("From 8 - 128, how many characters would you like?", "");
+  let range = parseInt(User);
+  
+  if (range >= 8 && range <= 128){
+    return range
+  } else {
+     alert ("Error invalid character amount")
+    return null
+  }
 }
 
 // Get references to the #generate element
